@@ -1,7 +1,33 @@
 doctype html
+
+mixin item(title, url)
+  li(class ='list-item')
+     a(href=url class=path ==url ? 'active' : '')=title
+
 html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+  p=locals.path
+    nav
+      ul
+        +item('strona główna','/')
+        +item('Aktualnosci','/news')
+        +item('Admin','/admin')
+        +item('Quiz','/quiz')
+        +item('Users','/users')
     block content
+//- layout słuzy aby zdefiniowac staly element strony jakis pug mui sie zawwsze zacyznac od poczatku
+ li
+        a(href="/news") Aktualnosci
+      li
+        a(href="/admin") Admin 
+      li
+        a(href="/quiz") Quiz
+      li
+        a(href="/users") Users
+      li
+        a(href="/") Strona Główna
+
+         p=locals.path tak sie odowłuje do zmiennych globalnych

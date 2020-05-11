@@ -3,7 +3,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next)=> {// req to co dostajemy res to co zwracamy uzytkownikowi
-  res.render('index', { title: 'Express' });// index to wskaznie nazwy szablonu
+  res.render('admin', { title: 'Admin' });// index to wskaznie nazwy szablonu
 });// w obniekcie przekazuje obiekt 
 
 

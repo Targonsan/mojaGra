@@ -4,8 +4,13 @@ var path = require('path');// do pobiernaia sciezki public
 var cookieParser = require('cookie-parser');//wspiera nas w coockies 
 var logger = require('morgan');//słuzy od zrzucania logów w tryba developerskim
 
+
+
 var indexRouter = require('./routes/index');//nasze importy
 var usersRouter = require('./routes/users');
+var adminRouter = require('./routes/admin');
+var newsRouter = require('./routes/news');
+var quizRouter = require('./routes/quiz');
 
 var app = express();
 
@@ -18,9 +23,19 @@ app.use(express.json());// przechwytywnaie naszeog body
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));// katlaog  znaszymy assetami pliki po stornei przegldarki
+// ta funkcja wywołuejsie za kdym razem jesli cos sie stanie get post itd pokazuje nam sciezne co ja wywołało !
+app.use(function(req,res,next){
+  // console.log(req.path);
+  res.locals.path=req.path;
+  //jak zrobic zmienna lobalna ? tutaj przypisuje ja do res.locals.path/ path ot moja nazwa
+  next();// zeby sie nam nie zatrzyamł na routingu i psozedł dalej
+})
 
 app.use('/', indexRouter);// deklaracja gdie jest dostpeny dany 
 app.use('/users', usersRouter);
+app.use('/news', newsRouter);
+app.use('/quiz', quizRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {// wyłapuje adressy które nie istnieja !

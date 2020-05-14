@@ -2,7 +2,7 @@ doctype html
 
 mixin item(title, url)
   li(class ='list-item')
-     a(href=url class=path ==url ? 'active' : '')=title
+     a(href=url class= path == url ? 'active' : '')=title
 
 html
   head
@@ -17,6 +17,7 @@ html
         +item('Admin','/admin')
         +item('Quiz','/quiz')
         +item('Users','/users')
+        +item('Rejestracja','/rejestration')
     block content
 //- layout słuzy aby zdefiniowac staly element strony jakis pug mui sie zawwsze zacyznac od poczatku
  li
@@ -31,3 +32,5 @@ html
         a(href="/") Strona Główna
 
          p=locals.path tak sie odowłuje do zmiennych globalnych
+         
+         za pomoca tej zmienje globalnej odwołuje sie do path
